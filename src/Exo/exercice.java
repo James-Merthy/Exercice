@@ -676,39 +676,49 @@ public class exercice {
 
                 case "g":
 
-                    tab[pos - 1] = pion;
-
-
-                    if (gauche < 0) {
+                    if (pos - 1 < 0) {
 
                         System.out.println("error mouvement imposimble");
 
 
                     } else {
 
+                        pos = pos - 1 ;
+                        tab[pos] = pion;
+                        tab[pos + 1] = null ;
+
                         afficherTabString(tab);
                     }
+
+
+
+
 
                     break;
 
                 case "d":
-
-                    tab[pos + 1] = pion;
-
-
-
-
-                    if (droite > tab.length - 1) {
+                    if (pos + 1 > tab.length - 1) {
 
                         System.out.println("error mouvement impossible");
 
 
                     } else {
 
+                        pos = pos + 1 ;
+                        tab[pos] = pion;
+                        tab[pos - 1] = null ;
+
                         afficherTabString(tab);
 
 
                     }
+
+
+
+
+
+
+
 
                     break;
 
