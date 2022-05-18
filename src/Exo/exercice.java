@@ -743,6 +743,16 @@ public class exercice {
 
     }
 
+    public static void inscription (int numéro , int [] tab){
+
+        int [] tab2 = new int [tab.length + 1];
+
+        for (int i = 0 ; i < tab.length ; i ++){
+
+            
+        }
+    }
+
 
     public static void afficherTabString(String[] tab) {
 
