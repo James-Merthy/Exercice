@@ -598,7 +598,7 @@ public class exercice {
 
 
             }
-            System.out.println(min);
+            // System.out.println(min);
 
 
             sav = tab[min];
@@ -683,15 +683,12 @@ public class exercice {
 
                     } else {
 
-                        pos = pos - 1 ;
+                        pos = pos - 1;
                         tab[pos] = pion;
-                        tab[pos + 1] = null ;
+                        tab[pos + 1] = null;
 
                         afficherTabString(tab);
                     }
-
-
-
 
 
                     break;
@@ -704,20 +701,14 @@ public class exercice {
 
                     } else {
 
-                        pos = pos + 1 ;
+                        pos = pos + 1;
                         tab[pos] = pion;
-                        tab[pos - 1] = null ;
+                        tab[pos - 1] = null;
 
                         afficherTabString(tab);
 
 
                     }
-
-
-
-
-
-
 
 
                     break;
@@ -743,14 +734,74 @@ public class exercice {
 
     }
 
-    public static void inscription (int numéro , int [] tab){
+    public static void inscription(int numéro, int[] tab) {
 
-        int [] tab2 = new int [tab.length + 1];
+        int[] tab2 = new int[tab.length + 1];
 
-        for (int i = 0 ; i < tab.length ; i ++){
+        int save = 0;
 
-            
+        for (int i = 0; i < tab.length; i++) {
+
+            tab2[i] = tab[i];
+
+
         }
+
+        int i = 0;
+
+        int trouver = 1;
+
+
+        while (trouver > 0) {
+
+            if (numéro > tab2[i]) {
+
+                i++;
+
+            } else {
+
+                tab2[tab2.length - 1] = tab2[i];
+
+                tab2[i] = numéro;
+
+                //trouver --;
+
+
+                for (int j = tab2.length - 1; j >= 1; j--){
+
+                    if (tab2[j] < tab2[j-1]){
+
+                        save = tab2[j];
+
+                        tab2[j] = tab2[j-1];
+
+                        tab2[j-1] = save ;
+                    }else{
+
+                        trouver -- ;
+                    }
+
+                }
+
+
+
+
+            }
+
+        }
+
+        afficher_tab(tab2);
+    }
+
+    public static void tableau_miroure_2(int[] tab) {
+        int[] tab2 = new int[tab.length];
+
+        for (int i = 0; i < tab.length; i++) {
+
+            tab2[i] = tab[tab.length - i - 1];
+        }
+
+        afficher_tab(tab2);
     }
 
 
@@ -774,14 +825,55 @@ public class exercice {
 
     }
 
+    public static void triBull(int[] tab) {
+
+        boolean permutation;
+
+        int temp;
+
+        int passage = 0;
+
+        do {
+            permutation = false;
+
+            for (int i = 0; i < tab.length - 1 - passage; i++) {
+
+                if (tab[i] > tab[i + 1]) {
+
+                    permutation = true;
+                    temp = tab[i];
+                    tab[i] = tab[i + 1];
+                    tab[i + 1] = temp;
+                }
+
+
+            }
+            passage++;
+
+
+        } while (permutation);
+
+
+        afficher_tab(tab);
+
+
+    }
+
+
     public static void main(String[] args) {
 
-        pion();
+
 
 
     }
 }
       /*
+       int[] tab = {1, 5, 6, 7, 8, 9, 14, 25, 30};
+
+        //System.out.println(tab[tab.length - 1]);
+
+        inscription(4, tab);
+      pion();
       int[] tab = {13, 5, 18, 12, 4, 6};
 
         rechercheVal(15, tab);
