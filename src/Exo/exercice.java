@@ -1,7 +1,5 @@
 package Exo;
 
-import com.sun.source.tree.CaseTree;
-
 import java.util.Scanner;
 
 public class exercice {
@@ -767,23 +765,21 @@ public class exercice {
                 //trouver --;
 
 
-                for (int j = tab2.length - 1; j >= 1; j--){
+                for (int j = tab2.length - 1; j >= 1; j--) {
 
-                    if (tab2[j] < tab2[j-1]){
+                    if (tab2[j] < tab2[j - 1]) {
 
                         save = tab2[j];
 
-                        tab2[j] = tab2[j-1];
+                        tab2[j] = tab2[j - 1];
 
-                        tab2[j-1] = save ;
-                    }else{
+                        tab2[j - 1] = save;
+                    } else {
 
-                        trouver -- ;
+                        trouver--;
                     }
 
                 }
-
-
 
 
             }
@@ -859,15 +855,310 @@ public class exercice {
 
     }
 
+    public static void fusion_2_tableau(int[] tab1, int[] tab2) {
+
+
+    }
+
+    public static int suiteDefibonnacci(int n) {
+
+        int valeur_initiale = 1;
+
+        int index = 0;
+
+        int valeur = 0;
+
+        int index_derièrre = 1;
+
+        int index_derièrre_encore = 1;
+
+        if (n == 0) {
+
+            valeur = 0;
+
+        } else if (n == 1) {
+
+            valeur = 1;
+
+        } else if (n == 2) {
+
+            valeur = 1;
+
+        } else {
+
+            while (index < n-2) {
+
+                valeur = index_derièrre + index_derièrre_encore;
+
+                index_derièrre_encore = index_derièrre;
+
+                index_derièrre = valeur;
+
+                index++;
+
+
+            }
+        }
+
+
+        return valeur;
+    }
+
 
     public static void main(String[] args) {
 
+        System.out.println(suiteDefibonnacci(0));
+        System.out.println(suiteDefibonnacci(1));
+        System.out.println(suiteDefibonnacci(2));
+        System.out.println(suiteDefibonnacci(3));
+        System.out.println(suiteDefibonnacci(4));
+        System.out.println(suiteDefibonnacci(5));
+        System.out.println(suiteDefibonnacci(6));
+        System.out.println(suiteDefibonnacci(7));
+        System.out.println(suiteDefibonnacci(8));
 
 
 
     }
 }
       /*
+
+       int[] tab3 = new int[tab1.length + tab2.length];
+
+        // System.out.println(tab3.length);
+
+
+        int indice_tab2 = 0;
+
+
+        int minimum_trouver = 0;
+
+        int indice_tab1 = 0;
+
+        int minimum_du_tab_1 = 0;
+
+        int minimum_du_tab_2 = 0;
+
+        int minimum_trouver_tab_2 = 0;
+
+        int tableau3_remplie = 0;
+
+        int indice_du_tab_3 = 0;
+
+        boolean tab1_vide = false;
+
+        int compteur_tab1_moins1 = 0;
+
+        int compteur_tab2_moins1 = 0;
+
+        boolean tab2_vide = false;
+
+        int i = 0;
+
+
+        if (tab1.length < tab2.length) {
+
+            while (i < 2) {
+
+                afficher_tab(tab1);
+                System.out.println();
+
+                afficher_tab(tab2);
+                System.out.println();
+
+                afficher_tab(tab3);
+
+                compteur_tab1_moins1 = 0;
+
+                minimum_du_tab_1 = 0;
+
+                minimum_du_tab_2 = 0;
+
+
+                for (int val : tab1) {
+
+                    if (val == -1) {
+
+                        compteur_tab1_moins1++;
+
+
+                    }
+
+
+                }
+
+                System.out.println();
+
+                System.out.println("il y 'a : " + compteur_tab1_moins1 + " -1");
+
+                if (compteur_tab1_moins1 == tab1.length) {
+
+                    tab1_vide = true;
+
+                    i = 2;
+                }
+
+                System.out.println("la taille du tableau : " + tab1.length);
+
+                System.out.println("le tab 1 est vide ? " + tab1_vide);
+
+                if (tab1_vide == false) {
+
+                    while (minimum_trouver == 0) {
+
+                        int p = 0;
+
+
+                        boolean condition1 = false;
+
+                        while (condition1 == false) {
+
+                            if (tab1[p] == -1) {
+
+                                p++;
+
+                                System.out.println("val diff de -1 tab 1 ? " + condition1);
+
+                            } else {
+
+                                minimum_du_tab_1 = tab1[p];
+
+                                System.out.println("le minimum du tab 1 : " + minimum_du_tab_1);
+
+                                condition1 = true;
+
+
+                            }
+                        }
+
+
+                        if (minimum_du_tab_1 > tab1[indice_tab1 + 1] && tab1[indice_tab1 + 1] >= 0) {
+
+                            minimum_du_tab_1 = tab1[indice_tab1 + 1];
+
+                            indice_tab1++;
+
+                        } else {
+
+                            indice_tab1++;
+                        }
+
+                        if (indice_tab1 == tab1.length - 1) {
+
+
+                            if (tab1[indice_tab1] == minimum_du_tab_1) {
+
+                                tab1[indice_tab1] = -1;
+
+                                minimum_trouver++;
+
+                            } else {
+
+                                tab1[indice_tab1 - 1] = -1;
+
+                                minimum_trouver++;
+
+                            }
+
+
+
+                        }
+
+
+                    }
+
+                    while (minimum_trouver_tab_2 == 0) {
+
+                        int l = 0;
+
+                        boolean condition2 = false;
+                        while (condition2 == false) {
+
+                            if (tab2[l] == -1) {
+
+                                l++;
+
+                                System.out.println("val diff de -1 ? tab 2 " + condition2);
+
+                            } else {
+
+                                minimum_du_tab_2 = tab2[l];
+                                System.out.println("Le minimum du tab 2 :  " + minimum_du_tab_2);
+                                condition2 = true;
+
+
+
+
+                            }
+                        }
+
+                        minimum_du_tab_2 = tab2[indice_tab2];
+
+                        if (minimum_du_tab_2 > tab2[indice_tab2 + 1] && tab2[indice_tab2 + 1] >= 0) {
+
+                            minimum_du_tab_2 = tab2[indice_tab2 + 1];
+
+                            indice_tab2++;
+
+                        } else {
+
+                            indice_tab2++;
+                        }
+
+                        if (indice_tab2 == tab2.length - 1) {
+
+
+                            if (tab2[indice_tab2] == minimum_du_tab_2) {
+
+                                tab2[indice_tab2] = -1;
+                            } else {
+
+                                tab2[indice_tab2 - 1] = -1;
+                            }
+
+
+                            minimum_trouver_tab_2++;
+                        }
+
+                    }
+
+                    if (minimum_du_tab_1 > minimum_du_tab_2) {
+
+                        tab3[indice_du_tab_3] = minimum_du_tab_2;
+
+                        tab3[indice_du_tab_3 + 1] = minimum_du_tab_1;
+
+                        indice_du_tab_3 = indice_du_tab_3 + 2;
+
+                        System.out.println("indice tab 3 : " + indice_du_tab_3);
+
+
+                    } else {
+
+                        tab3[indice_du_tab_3] = minimum_du_tab_1;
+
+                        tab3[indice_du_tab_3 + 1] = minimum_du_tab_2;
+
+                        indice_du_tab_3 = indice_du_tab_3 + 2;
+
+                        System.out.println("indice tab 3 : " + indice_du_tab_3);
+
+
+                    }
+
+                }
+
+
+                i++;
+
+                System.out.println("tour : " + i);
+
+
+            }
+
+
+        }
+
        int[] tab = {1, 5, 6, 7, 8, 9, 14, 25, 30};
 
         //System.out.println(tab[tab.length - 1]);
