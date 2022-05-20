@@ -1,8 +1,9 @@
 package Exo;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class exercice {
+    //#region exercice
 
     public static void estBissextille(int année) {
 
@@ -886,7 +887,7 @@ public class exercice {
 
         } else {
 
-            while (index < n-2) {
+            while (index < n - 2) {
 
                 valeur = index_derièrre + index_derièrre_encore;
 
@@ -904,10 +905,421 @@ public class exercice {
         return valeur;
     }
 
+    public static String inverse_chaîne_de_caractère(String mot) {
+
+        String mot_inverse = "";
+
+
+        for (int i = mot.length() - 1; i >= 0; i--) {
+
+
+            mot_inverse = mot_inverse + mot.charAt(i);
+
+
+        }
+
+
+        return mot_inverse;
+
+
+    }
+
+    public static void nombre_paire_entre_2_nombre_entier(int nombre1, int nombre2) {
+
+        int nombre_paire = 0;
+
+
+        if (nombre1 < nombre2) {
+
+            int i = 0;
+
+            if (nombre1 % 2 == 0) {
+
+                i = nombre1;
+            } else {
+
+                i = nombre1 + 1;
+            }
+
+            while (i < nombre2 + 1) {
+
+                if (i % 2 == 0) {
+
+                    System.out.print(" | " + i);
+
+                    i++;
+                } else {
+
+                    i++;
+                }
+            }
+
+        } else {
+
+            int i = 0;
+
+            if (nombre2 % 2 == 0) {
+
+                i = nombre2;
+            } else {
+
+                i = nombre2 + 1;
+            }
+
+            while (i < nombre1 + 1) {
+
+                if (i % 2 == 0) {
+
+                    System.out.print(" | " + i);
+
+                    i++;
+                } else {
+
+                    i++;
+                }
+            }
+
+        }
+
+
+    }
+
+    //#endregion
+    //#region est_un_palindrome
+
+    public static boolean est_un_palindrome(String mot) {
+
+        mot = mot.toLowerCase(Locale.ROOT);
+
+        if (mot.equals(inverse_chaîne_de_caractère(mot))) {
+
+            return true;
+        }
+
+        return false;
+    }
+    //#endregion
+    //#region fusion2Tab
+
+    public static void fusion2Tab(int[] tab1, int[] tab2) {
+        int[] tab3 = new int[tab1.length + tab2.length];
+
+        boolean fromTab2 = false;
+
+        for (int i = 0; i < tab3.length; i++) {
+            // On trouve le minimum des tableaux
+            int minimum = Integer.MAX_VALUE;
+            int posMin = -1;
+            for (int j = 0; j < tab1.length; j++) {
+                if (minimum > tab1[j] && tab1[j] != -1) {
+                    minimum = tab1[j];
+                    posMin = j;
+                    fromTab2 = false;
+                }
+            }
+
+            for (int k = 0; k < tab2.length; k++) {
+                if (minimum > tab2[k] && tab2[k] != -1) {
+                    minimum = tab2[k];
+                    posMin = k;
+                    fromTab2 = true;
+                }
+            }
+
+            if (fromTab2) {
+                tab2[posMin] = -1;
+            } else {
+                tab1[posMin] = -1;
+            }
+
+            tab3[i] = minimum;
+
+        }
+
+        for (int elem : tab3) {
+            System.out.print(" | " + elem);
+        }
+    }
+
+    //#endregion
+
+
+    public static String pioche(int pioche, List<String> liste) {
+
+
+        liste.get(pioche);
+
+
+        return liste.get(pioche);
+    }
+
+    public static void afficherList(List<String> list) {
+
+        for (String elem : list
+        ) {
+
+            System.out.print("|" + elem);
+
+        }
+
+    }
+
+    public static void afficherHashMap(HashMap<String, String> couple) {
+
+
+        for (Map.Entry<String, String> mapentry : couple.entrySet()) {
+            System.out.println("Donneur : " + mapentry.getKey()
+                    + " | Receveur : " + mapentry.getValue());
+        }
+
+    }
+
+    public static List<Integer> liste_entier_taille_inviter(List<String> list) {
+
+        List<Integer> list_entier = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+
+            list_entier.add(i);
+        }
+
+        Collections.shuffle(list_entier);
+
+        return list_entier;
+    }
+
+    public static void afficherList_entier(List<Integer> list) {
+
+        for (int elem : list
+        ) {
+
+            System.out.print("|" + elem);
+
+        }
+
+    }
+
+
+    public static HashMap<String, String> création_list_couple_donneur_vers_receveur(List<String> invité) {
+
+
+        HashMap<String, String> coupleGenerer = new HashMap<>();
+
+        while (invité.size() != 0) {
+
+
+            List<Integer> list_entier = liste_entier_taille_inviter(invité);
+
+
+            HashMap<String, String> map = couple(list_entier.get(0), list_entier.get(1), invité);
+
+            ArrayList<String> keys = new ArrayList<>(map.keySet());
+            ArrayList<String> value = new ArrayList<>(map.values());
+
+            coupleGenerer.put(keys.get(0), value.get(0));
+
+
+        }
+        System.out.println();
+
+        return coupleGenerer;
+
+
+    }
+
+    public static List<String> list_donneur(HashMap<String, String> coupe) {
+
+        List<String> list_des_donneurs = new ArrayList<>();
+
+
+        for (Map.Entry<String, String> mapentry : coupe.entrySet()) {
+
+            list_des_donneurs.add(mapentry.getKey());
+
+
+        }
+
+        return list_des_donneurs;
+    }
+
+    public static List<String> list_receveur(HashMap<String, String> coupe) {
+
+        List<String> list_des_donneurs = new ArrayList<>();
+
+
+        for (Map.Entry<String, String> mapentry : coupe.entrySet()) {
+
+            list_des_donneurs.add(mapentry.getValue());
+
+
+        }
+
+        return list_des_donneurs;
+    }
+
+
+    public static HashMap<String, String> nouvelle_Liste_donneur(List<String> list_nouveau_donneur, List<String> list_nouveau_receveur) {
+
+        HashMap<String, String> nouvelles_liste = new HashMap<>();
+
+
+        return nouvelles_liste;
+
+    }
+
+
+    public static HashMap<String, String> couple(int donneur, int receveur, List<String> invité) {
+
+        String donneurs = pioche(donneur, invité);
+
+        String receveurs = pioche(receveur, invité);
+
+
+        HashMap<String, String> couple = new HashMap<>();
+
+
+        couple.put(donneurs, receveurs);
+
+
+        for (int i = 0; i < invité.size(); i++) {
+
+            if (invité.get(i).equals(donneurs)) {
+
+                invité.remove(i);
+            }
+
+        }
+
+        for (int i = 0; i < invité.size(); i++) {
+
+            if (invité.get(i).equals(receveurs)) {
+
+                invité.remove(i);
+            }
+
+        }
+
+        return couple;
+
+    }
+
+    public static void Liste_invitation(List<String> invité) {
+
+
+    }
+
 
     public static void main(String[] args) {
 
-        System.out.println(suiteDefibonnacci(0));
+        List<String> invité = new ArrayList<>();
+
+        invité.add("King-Niwem");
+        invité.add("James");
+        invité.add("Malou");
+        invité.add("Lossature");
+        invité.add("Bobby");
+        invité.add("Nigel");
+        invité.add("Zelison");
+        invité.add("Scoubidoubi");
+        invité.add("Capitaine Pirate");
+        invité.add("Japo");
+        invité.add("Whisky");
+
+        Collections.shuffle(invité);
+
+        int donneur = 0;
+
+        int reçeveur = 1;
+
+        //System.out.println(invité.size());
+        if (invité.size() % 2 == 0) {
+
+            while (reçeveur < invité.size()) {
+
+                System.out.println("Donneur : " + invité.get(donneur) + " | Receveur : " + invité.get(reçeveur));
+
+                donneur++;
+
+                reçeveur++;
+
+            }
+
+            System.out.println("Donneur : " + invité.get(invité.size()-1) + " | Receveur : " + invité.get(0));
+        } else {
+
+             while (reçeveur < invité.size() - 1 ) {
+
+                 System.out.println("Donneur : " + invité.get(donneur) + " | Receveur : " + invité.get(reçeveur));
+
+                 donneur++;
+
+                 reçeveur++;
+        }
+
+             System.out.println("Donneur : " + invité.get(invité.size()-1) + " | Receveur : " + invité.get(0));
+
+
+             }
+
+        // afficherHashMap(création_list_couple_donneur_vers_receveur(invité));
+
+
+        // afficherList(list_donneur(création_list_couple_donneur_vers_receveur(invité)));
+
+
+    }
+}
+//#region test
+ /*
+ System.out.println(est_un_palindrome("AlLa")); // true
+System.out.println(est_un_palindrome("alla")); // true
+
+        System.out.println(est_un_palindrome("alfezzaerzla")); // false
+       nombre_paire_entre_2_nombre_entier(15,26);
+
+        System.out.println();
+
+        nombre_paire_entre_2_nombre_entier(14,28);
+
+        System.out.println();
+
+        nombre_paire_entre_2_nombre_entier(144,20);
+
+
+ String mot1 = "salut" ;
+
+        String mot2 = "mot1" ;
+
+        String mot3 = mot1 + " " + mot2 ;
+
+        String mot4 = "" ;
+
+        StringBuilder chara = new StringBuilder();
+
+        char c = mot1.charAt(0) ;
+
+        chara.append(mot4).append(c) ;
+
+        System.out.println(chara);
+
+        c = mot1.charAt(2);
+
+        chara.append(mot4).append(c) ;
+
+        System.out.println(chara);
+
+
+        String joe = "Joe";
+        StringBuilder sb = new StringBuilder();
+        String sep = "";
+        for (char c: joe.toCharArray()) {
+            sb.append(sep).append(c);
+            sep = " ";
+        }
+
+        System.out.println(sb.toString());
+
+      System.out.println(suiteDefibonnacci(0));
         System.out.println(suiteDefibonnacci(1));
         System.out.println(suiteDefibonnacci(2));
         System.out.println(suiteDefibonnacci(3));
@@ -916,12 +1328,6 @@ public class exercice {
         System.out.println(suiteDefibonnacci(6));
         System.out.println(suiteDefibonnacci(7));
         System.out.println(suiteDefibonnacci(8));
-
-
-
-    }
-}
-      /*
 
        int[] tab3 = new int[tab1.length + tab2.length];
 
@@ -1214,3 +1620,5 @@ Calculatrice();
             System.out.println("est pas bisextille");
         }
         */
+//#endregion
+
