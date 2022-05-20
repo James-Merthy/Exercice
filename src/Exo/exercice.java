@@ -1205,26 +1205,6 @@ public class exercice {
 
     public static void Liste_invitation(List<String> invité) {
 
-
-    }
-
-
-    public static void main(String[] args) {
-
-        List<String> invité = new ArrayList<>();
-
-        invité.add("King-Niwem");
-        invité.add("James");
-        invité.add("Malou");
-        invité.add("Lossature");
-        invité.add("Bobby");
-        invité.add("Nigel");
-        invité.add("Zelison");
-        invité.add("Scoubidoubi");
-        invité.add("Capitaine Pirate");
-        invité.add("Japo");
-        invité.add("Whisky");
-
         Collections.shuffle(invité);
 
         int donneur = 0;
@@ -1247,19 +1227,41 @@ public class exercice {
             System.out.println("Donneur : " + invité.get(invité.size()-1) + " | Receveur : " + invité.get(0));
         } else {
 
-             while (reçeveur < invité.size() - 1 ) {
+            while (reçeveur < invité.size() - 1 ) {
 
-                 System.out.println("Donneur : " + invité.get(donneur) + " | Receveur : " + invité.get(reçeveur));
+                System.out.println("Donneur : " + invité.get(donneur) + " | Receveur : " + invité.get(reçeveur));
 
-                 donneur++;
+                donneur++;
 
-                 reçeveur++;
+                reçeveur++;
+            }
+
+            System.out.println("Donneur : " + invité.get(invité.size()-1) + " | Receveur : " + invité.get(0));
+
+
         }
+    }
 
-             System.out.println("Donneur : " + invité.get(invité.size()-1) + " | Receveur : " + invité.get(0));
+
+    public static void main(String[] args) {
+
+        List<String> invité = new ArrayList<>();
+
+        invité.add("King-Niwem");
+        invité.add("James");
+        invité.add("Malou");
+        invité.add("Lossature");
+        invité.add("Bobby");
+        invité.add("Nigel");
+        invité.add("Zelison");
+        invité.add("Scoubidoubi");
+        invité.add("Capitaine Pirate");
+        invité.add("Japo");
+        invité.add("Whisky");
+
+        Liste_invitation(invité);
 
 
-             }
 
         // afficherHashMap(création_list_couple_donneur_vers_receveur(invité));
 
